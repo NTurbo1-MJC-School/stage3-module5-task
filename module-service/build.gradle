@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':module-repository')
+    implementation "org.springframework:spring-context:6.0.9"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+    implementation "org.mapstruct:mapstruct:$mapstructVersion"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:2.7.7"
+}

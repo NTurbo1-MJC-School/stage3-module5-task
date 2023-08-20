@@ -1,0 +1,14 @@
+plugins {
+    id 'application'
+}
+
+mainClassName = 'com.mjc.school.Main'
+
+dependencies {
+    implementation project(':module-web')
+    implementation 'org.springframework.boot:spring-boot-starter:3.1.1'
+}
+
+run {
+    standardInput = System.in
+}
