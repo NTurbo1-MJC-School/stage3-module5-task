@@ -33,7 +33,11 @@ public class AuthorController implements AuthorControllerInterface {
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "View all authors", response = List.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully retrieved all authors")
+          @ApiResponse(code = 200, message = "Successfully retrieved all authors"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   }
   )
   public List<AuthorDtoResponse> readAll(@RequestParam String sort,
@@ -50,7 +54,11 @@ public class AuthorController implements AuthorControllerInterface {
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "Retrieves author data by specific id", response = AuthorDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully retrieved author data")
+          @ApiResponse(code = 200, message = "Successfully retrieved author data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public AuthorDtoResponse readById(@PathVariable Long id) {
       return authorService.readById(id);
@@ -61,18 +69,26 @@ public class AuthorController implements AuthorControllerInterface {
   @ResponseStatus(HttpStatus.CREATED)
   @ApiOperation(value = "Creates new author data", response = AuthorDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = "Successfully created the new author data")
+          @ApiResponse(code = 201, message = "Successfully created the new author data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public AuthorDtoResponse create(@RequestBody AuthorDtoRequest dtoRequest) {
     return authorService.create(dtoRequest);
   }
 
   @CommandHandler("11")
-  @PutMapping("/{id:\\d+}")
+  @PatchMapping("/{id:\\d+}")
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "Updates the existing author data", response = AuthorDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully updated the author data")
+          @ApiResponse(code = 200, message = "Successfully updated the author data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public AuthorDtoResponse update(@PathVariable Long id,
                                   @RequestBody AuthorDtoRequest dtoRequest) {
@@ -84,7 +100,11 @@ public class AuthorController implements AuthorControllerInterface {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @ApiOperation(value = "Deletes author data by specific id")
   @ApiResponses(value = {
-          @ApiResponse(code = 204, message = "Successfully deleted the author data")
+          @ApiResponse(code = 204, message = "Successfully deleted the author data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public void deleteById(@PathVariable Long id) {
       authorService.deleteById(id);
@@ -95,7 +115,11 @@ public class AuthorController implements AuthorControllerInterface {
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "Retrieves author data by specific news id", response = AuthorDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully retrieved author data")
+          @ApiResponse(code = 200, message = "Successfully retrieved author data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public AuthorDtoResponse readByNewsId(@PathVariable Long newsId) {
     return authorService.readByNewsId(newsId);

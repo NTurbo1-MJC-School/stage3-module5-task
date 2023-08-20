@@ -32,7 +32,11 @@ public class CommentController implements CommentControllerInterface {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "View all comments", response = List.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved all comments")
+            @ApiResponse(code = 200, message = "Successfully retrieved all comments"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+            @ApiResponse(code = 500, message = "Application failed to process the request")
     }
     )
     public List<CommentDtoResponse> readAll(@RequestParam String sort,
@@ -50,7 +54,11 @@ public class CommentController implements CommentControllerInterface {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Retrieves comment data by specific id", response = CommentDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved comment data")
+            @ApiResponse(code = 200, message = "Successfully retrieved comment data"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+            @ApiResponse(code = 500, message = "Application failed to process the request")
     })
     public CommentDtoResponse readById(@PathVariable Long id) {
         return commentService.readById(id);
@@ -62,7 +70,11 @@ public class CommentController implements CommentControllerInterface {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Creates new comment data", response = CommentDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully created the new comment data")
+            @ApiResponse(code = 201, message = "Successfully created the new comment data"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+            @ApiResponse(code = 500, message = "Application failed to process the request")
     })
     public CommentDtoResponse create(@RequestBody CommentDtoRequest createRequest) {
         return commentService.create(createRequest);
@@ -70,11 +82,15 @@ public class CommentController implements CommentControllerInterface {
 
     @Override
     @CommandHandler("21")
-    @PutMapping("/{id:\\d+}")
+    @PatchMapping("/{id:\\d+}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Updates the existing comment data", response = CommentDtoResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully updated the comment data")
+            @ApiResponse(code = 200, message = "Successfully updated the comment data"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+            @ApiResponse(code = 500, message = "Application failed to process the request")
     })
     public CommentDtoResponse update(@PathVariable Long id,
                                      @RequestBody CommentDtoRequest updateRequest) {
@@ -87,7 +103,11 @@ public class CommentController implements CommentControllerInterface {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Deletes comment data by specific id")
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "Successfully deleted the comment data")
+            @ApiResponse(code = 204, message = "Successfully deleted the comment data"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+            @ApiResponse(code = 500, message = "Application failed to process the request")
     })
     public void deleteById(@PathVariable Long id) {
         commentService.deleteById(id);
@@ -98,7 +118,11 @@ public class CommentController implements CommentControllerInterface {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Retrieves comment data by specific news id", response = List.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved comment data")
+            @ApiResponse(code = 200, message = "Successfully retrieved comment data"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+            @ApiResponse(code = 500, message = "Application failed to process the request")
     })
     public List<CommentDtoResponse> readByNewsId(@PathVariable Long newsId) {
         return null;

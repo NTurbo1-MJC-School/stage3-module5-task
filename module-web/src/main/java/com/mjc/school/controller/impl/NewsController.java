@@ -32,7 +32,11 @@ public class NewsController implements NewsControllerInterface {
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "View all news", response = List.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully retrieved all news")
+          @ApiResponse(code = 200, message = "Successfully retrieved all news"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   }
   )
   public List<NewsDtoResponse> readAll(@RequestParam String sort,
@@ -49,7 +53,11 @@ public class NewsController implements NewsControllerInterface {
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "Retrieves news data by specific id", response = NewsDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully retrieved news data")
+          @ApiResponse(code = 200, message = "Successfully retrieved news data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public NewsDtoResponse readById(@PathVariable Long id) {
     return newsService.readById(id);
@@ -60,18 +68,26 @@ public class NewsController implements NewsControllerInterface {
   @ResponseStatus(HttpStatus.CREATED)
   @ApiOperation(value = "Creates new news data", response = NewsDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = "Successfully created the new news data")
+          @ApiResponse(code = 201, message = "Successfully created the new news data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public NewsDtoResponse create(@RequestBody NewsDtoRequest dtoRequest) {
     return newsService.create(dtoRequest);
   }
 
   @CommandHandler("10")
-  @PutMapping("/{id:\\d+}")
+  @PatchMapping("/{id:\\d+}")
   @ResponseStatus(HttpStatus.OK)
   @ApiOperation(value = "Updates the existing news data", response = NewsDtoResponse.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Successfully updated the news data")
+          @ApiResponse(code = 200, message = "Successfully updated the news data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public NewsDtoResponse update(@PathVariable Long id,
                                 @RequestBody NewsDtoRequest dtoRequest) {
@@ -83,7 +99,11 @@ public class NewsController implements NewsControllerInterface {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @ApiOperation(value = "Deletes news data by specific id")
   @ApiResponses(value = {
-          @ApiResponse(code = 204, message = "Successfully deleted the news data")
+          @ApiResponse(code = 204, message = "Successfully deleted the news data"),
+          @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+          @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+          @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+          @ApiResponse(code = 500, message = "Application failed to process the request")
   })
   public void deleteById(@PathVariable Long id) {
     newsService.deleteById(id);
